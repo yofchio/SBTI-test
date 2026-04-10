@@ -1,0 +1,10 @@
+{
+  // 与 ESA 控制台里的 Pages 项目名称一致时可复用；不一致可改成控制台中的名称
+  "name": "SBTI-test",
+  "installCommand": "",
+  "buildCommand": "",
+  "assets": {
+    "directory": "./",
+    "notFoundStrategy": "singlePageApplication"
+  }
+}
