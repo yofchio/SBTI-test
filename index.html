@@ -647,6 +647,16 @@
       letter-spacing: -0.224px;
     }
 
+    .note-box .note-author-douyin {
+      white-space: normal;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
     .dim-list {
       display: grid;
       gap: 12px;
@@ -791,13 +801,15 @@
       <div class="section__inner">
         <div class="hero">
           <h1 class="display-hero">在游戏里，你到底是谁？</h1>
-          <p class="sub-heading">GPTI 电竞人格测试 — 回答 30 道问题，找到你的电竞灵魂选手。</p>
+          <p class="sub-heading">GPTI 电竞人格测试 — 回答 25 道问题，找到你的电竞灵魂选手。</p>
           <div class="hero__actions">
             <button type="button" id="startBtn" class="btn-primary">开始测试</button>
           </div>
           <div id="introFootnotes" class="hero__footnotes caption">
-            <span>覆盖 无畏契约· CS2 · 英雄联盟 三大电竞项目</span>
-瓦罗兰亚特            <span>灵感来源：SBTI 人格测试（<a href="https://space.bilibili.com/417038183?spm_id_from=333.337.search-card.all.click" target="_blank" rel="noopener noreferrer">B站@蛆肉儿串儿</a>）</span>
+            <span>覆盖 无畏契约 · CS2 · 英雄联盟 三大电竞项目</span>
+            <span>作者：<strong>Rick</strong>（<a href="https://www.douyin.com/user/MS4wLjABAAAAR_CFxB9zZ1UMT51uGciwjnaLU7zdCr23S2d3w8ePPiY?from_tab_name=main" target="_blank" rel="noopener noreferrer" style="color:var(--accent-strong);">抖音主页</a>）</span>
+            <span>灵感来源：SBTI 人格测试（<a href="https://space.bilibili.com/417038183?spm_id_from=333.337.search-card.all.click" target="_blank" rel="noopener noreferrer">B站@蛆肉儿串儿</a>）</span>
+            <span>友情链接：<a href="https://fsbang.top" target="_blank" rel="noopener noreferrer" style="color:var(--accent-strong);">fsbang.top</a></span>
           </div>
         </div>
       </div>
@@ -867,6 +879,14 @@
           </details>
         </div>
 
+        <div class="note-box" style="text-align:center;">
+          <p class="note-author-douyin">
+            <span>作者：<strong>Rick</strong></span>
+            <a href="https://www.douyin.com/user/MS4wLjABAAAAR_CFxB9zZ1UMT51uGciwjnaLU7zdCr23S2d3w8ePPiY?from_tab_name=main" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:8px 18px;background:#ff2c55;color:#fff;border-radius:999px;text-decoration:none;font-weight:700;font-size:14px;flex-shrink:0;">抖音主页</a>
+          </p>
+          <p style="font-size:13px;">友情链接：<a href="https://fsbang.top" target="_blank" rel="noopener noreferrer" style="color:var(--accent-strong);">fsbang.top</a></p>
+        </div>
+
         <div class="result-actions">
           <div class="result-actions__btns">
             <button type="button" id="restartBtn" class="btn-secondary">重新测试</button>
@@ -901,7 +921,9 @@
       {id:'q2',dim:'M1',text:'关键局你空了一个简单的枪/技能，你内心OS是？',options:[{label:'我就知道，我就是菜',value:1},{label:'唉，手滑了',value:2},{label:'没关系，下一枪必中，我从不失误两次',value:3}]},
       {id:'q4',dim:'M2',text:'看到别人的高光操作集锦（180°甩狙、极限反杀），你的反应？',options:[{label:'帅是帅，但不实用，我更想稳赢',value:1},{label:'不错，状态好的时候我也行',value:2},{label:'我必须学会，打游戏不秀等于没打',value:3}]},
       {id:'q5',dim:'M3',text:'打rank之前你一般？',options:[{label:'直接开冲，热手是懦夫行为',value:1},{label:'先打把死斗/训练模式',value:2},{label:'Aim训练器30分钟+回顾昨天的录像，然后才开始',value:3}]},
+      {id:'q6',dim:'M3',text:'版本大更新，meta大变，你怎么应对？',options:[{label:'打着打着就适应了',value:1},{label:'看看攻略视频',value:2},{label:'研究数据，苦练新套路，不练到精通不上rank',value:3}]},
       {id:'q7',dim:'S1',text:'你的队伍连输5局，你怎么分析问题？',options:[{label:'不知道啊，他们就是比我们强，继续打呗',value:1},{label:'大概知道哪里出了问题',value:2},{label:'从第1局我就看出他们的套路了，让我来安排反制战术',value:3}]},
+      {id:'q8',dim:'S1',text:'你对看职业比赛录像/回放这件事的态度？',options:[{label:'不如自己打一把',value:1},{label:'大赛偶尔看看',value:2},{label:'必看，而且我有笔记本专门记战术',value:3}]},
       {id:'q9',dim:'S2',text:'你准备好的战术今天完全不好使，你怎么办？',options:[{label:'继续执行，总会好使的',value:1},{label:'做一些调整',value:2},{label:'当场改战术，实时阅读对手，见招拆招',value:3}]},
       {id:'q10',dim:'S2',text:'你选了本命英雄/角色，结果被对面完克，队友还开始摆烂，你？',options:[{label:'投了吧，下一把',value:1},{label:'调整出装/玩法，尽量稳住',value:2},{label:'越逆风越兴奋，这才是展现实力的时候',value:3}]},
       {id:'q11',dim:'S3',text:'段位/排名对你意味着什么？',options:[{label:'就一个数字，开心就好',value:1},{label:'想上分，但不至于为此失眠',value:2},{label:'我必须上到XX段位，这是我最近唯一的目标',value:3}]},
@@ -909,13 +931,16 @@
       {id:'q13',dim:'T1',text:'你在游戏里的语音通讯通常是？',options:[{label:'……（沉默，偶尔打个ping）',value:1},{label:'"敌人B点，小心"（简短报点）',value:2},{label:'"听我指挥！A去绕后，B卡这个角，我三秒后闪光弹——三、二、一……"',value:3}]},
       {id:'q15',dim:'T2',text:'队伍需要有人玩辅助/补位一个你不喜欢的角色？',options:[{label:'抱歉，我只玩我的本命，不换就挂机',value:1},{label:'行吧，打就打，但我不开心',value:2},{label:'没问题，团队需要什么我就玩什么',value:3}]},
       {id:'q17',dim:'T3',text:'你在残局/关键时刻，已经死了的队友在疯狂报信息，你？',options:[{label:'全部静音，他们只会干扰我',value:1},{label:'听着但主要靠自己判断',value:2},{label:'他们有我没有的信息，我听他们的',value:3}]},
+      {id:'q18',dim:'T3',text:'和路人匹配，你的默认心态是？',options:[{label:'默认全是菜鸡，只能靠自己carry',value:1},{label:'看情况，不好说',value:2},{label:'大家都在努力，一起配合就行',value:3}]},
       {id:'q19',dim:'F1',text:'上半场0-7落后，你的精神状态？',options:[{label:'已经在想下一把了',value:1},{label:'烦躁但还在撑着',value:2},{label:'还能打，我见过更离谱的翻盘',value:3}]},
       {id:'q20',dim:'F1',text:'连续打了6小时rank，输了5把，段位掉到深渊，你？',options:[{label:'一边哭一边点开始匹配',value:1},{label:'好吧也许该休息了……再来最后一把',value:2},{label:'关掉游戏，做几个俯卧撑，明天再来，心态第一',value:3}]},
       {id:'q21',dim:'F2',text:'1v3残局，队友全在围观，你的手？',options:[{label:'在抖，心跳声已经传进麦克风了',value:1},{label:'有点出汗但还能操作',value:2},{label:'稳如磐石，这是属于我的高光时刻',value:3}]},
       {id:'q22',dim:'F2',text:'12-12平局，加时赛，决胜局，你的感受？',options:[{label:'求求快点结束，我心脏受不了了',value:1},{label:'紧张但能集中注意力',value:2},{label:'这就是我玩这个游戏的原因',value:3}]},
       {id:'q23',dim:'F3',text:'痛苦地输掉比赛后，你的第一反应？',options:[{label:'队友太菜了/游戏平衡有问题/匹配机制有毒',value:1},{label:'有我的问题也有别人的问题',value:2},{label:'让我看看我哪里打得不好，下次改进',value:3}]},
+      {id:'q24',dim:'F3',text:'朋友问你怎么输的？',options:[{label:'别提了，你知道我那个打野有多离谱吗……',value:1},{label:'大家都打得一般，没什么好说的',value:2},{label:'我自己几个关键操作失误了，我知道怎么改',value:3}]},
       {id:'q25',dim:'I1',text:'周五晚上，你怎么打游戏？',options:[{label:'solo排，戴好耳机，世界与我无关',value:1},{label:'看看有没有人在线，有就一起',value:2},{label:'五排群已经炸了，我们这周计划了很久了',value:3}]},
       {id:'q27',dim:'I2',text:'这周末有大型电竞赛事，你？',options:[{label:'完全不知道有比赛',value:1},{label:'可能会看看决赛',value:2},{label:'赛程早就背下来了，零食饮料已备好，我请了假',value:3}]},
+      {id:'q29',dim:'I3',text:'游戏在你的生活中扮演什么角色？',options:[{label:'众多爱好之一',value:1},{label:'挺重要的一部分',value:2},{label:'游戏定义了我很大一部分人生',value:3}]},
       {id:'q30',dim:'I3',text:'有人说"不就是个游戏吗"，你的反应？',options:[{label:'说得对，确实没必要太认真',value:1},{label:'嗯……这是竞技游戏',value:2},{label:'这人没在凌晨三点赢过一把rank，不配和我说话',value:3}]}
     ];
 

@@ -66,7 +66,7 @@ console.log('【1】数据完整性');
 
 assert(Object.keys(dimensionMeta).length === 15, `dimensionMeta 应有15个维度，实际 ${Object.keys(dimensionMeta).length}`);
 assert(dimensionOrder.length === 15, `dimensionOrder 应有15项，实际 ${dimensionOrder.length}`);
-assert(questions.length === 20, `questions 应有20题，实际 ${questions.length}`);
+assert(questions.length === 25, `questions 应有25题，实际 ${questions.length}`);
 assert(specialQuestions.length === 2, `specialQuestions 应有2题，实际 ${specialQuestions.length}`);
 assert(Object.keys(TYPE_LIBRARY).length === 29, `TYPE_LIBRARY 应有29个选手，实际 ${Object.keys(TYPE_LIBRARY).length}`);
 assert(NORMAL_TYPES.length === 27, `NORMAL_TYPES 应有27个可匹配选手，实际 ${NORMAL_TYPES.length}`);
@@ -101,7 +101,7 @@ questions.forEach(q => {
   dimQuestionCount[q.dim] = (dimQuestionCount[q.dim] || 0) + 1;
 });
 
-const twoDims = ['M1','S2','S3','F1','F2'];
+const twoDims = ['M1','M3','S1','S2','S3','T3','F1','F2','F3','I3'];
 dimensionOrder.forEach(dim => {
   const expected = twoDims.includes(dim) ? 2 : 1;
   assert(dimQuestionCount[dim] === expected, `维度 ${dim} 应有${expected}题，实际 ${dimQuestionCount[dim] || 0} 题`);
