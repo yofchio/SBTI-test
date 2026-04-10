@@ -24,7 +24,7 @@ const mockDOM = {
     appendChild: ()=>{}, querySelectorAll: () => []
   })
 };
-const mockWindow = { scrollTo: ()=>{} };
+const mockWindow = { scrollTo: ()=>{}, location: { search: '', href: '' } };
 
 // 在隔离环境中执行 JS，提取数据
 const ctx = { document: mockDOM, window: mockWindow };
@@ -68,11 +68,11 @@ assert(Object.keys(dimensionMeta).length === 15, `dimensionMeta 应有15个维�
 assert(dimensionOrder.length === 15, `dimensionOrder 应有15项，实际 ${dimensionOrder.length}`);
 assert(questions.length === 25, `questions 应有25题，实际 ${questions.length}`);
 assert(specialQuestions.length === 2, `specialQuestions 应有2题，实际 ${specialQuestions.length}`);
-assert(Object.keys(TYPE_LIBRARY).length === 29, `TYPE_LIBRARY 应有29个选手，实际 ${Object.keys(TYPE_LIBRARY).length}`);
-assert(NORMAL_TYPES.length === 27, `NORMAL_TYPES 应有27个可匹配选手，实际 ${NORMAL_TYPES.length}`);
+assert(Object.keys(TYPE_LIBRARY).length === 31, `TYPE_LIBRARY 应有31个选手，实际 ${Object.keys(TYPE_LIBRARY).length}`);
+assert(NORMAL_TYPES.length === 29, `NORMAL_TYPES 应有29个可匹配选手，实际 ${NORMAL_TYPES.length}`);
 assert(Object.keys(DIM_EXPLANATIONS).length === 15, `DIM_EXPLANATIONS 应有15个维度，实际 ${Object.keys(DIM_EXPLANATIONS).length}`);
-assert(Object.keys(TYPE_IMAGES).length === 29, `TYPE_IMAGES 应有29项，实际 ${Object.keys(TYPE_IMAGES).length}`);
-assert(Object.keys(PLAYER_GAMES).length === 29, `PLAYER_GAMES 应有29项，实际 ${Object.keys(PLAYER_GAMES).length}`);
+assert(Object.keys(TYPE_IMAGES).length === 31, `TYPE_IMAGES 应有31项，实际 ${Object.keys(TYPE_IMAGES).length}`);
+assert(Object.keys(PLAYER_GAMES).length === 31, `PLAYER_GAMES 应有31项，实际 ${Object.keys(PLAYER_GAMES).length}`);
 
 // ====== 2. 维度一致性 ======
 console.log('【2】维度一致性');

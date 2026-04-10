@@ -64,11 +64,12 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      height: var(--nav-height);
+      min-height: var(--nav-height);
+      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0 22px;
+      padding: 10px 22px;
       background: var(--sk-nav-glass);
       backdrop-filter: saturate(180%) blur(20px);
       -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -83,6 +84,13 @@
       justify-content: center;
     }
 
+    .global-nav__stack {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
     .global-nav__cluster {
       display: flex;
       align-items: center;
@@ -90,6 +98,20 @@
       flex-wrap: wrap;
       gap: 8px;
       row-gap: 4px;
+    }
+
+    .global-nav__url {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: -0.08px;
+      color: var(--sk-link-light);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .global-nav__url:hover {
+      text-decoration: underline;
+      color: var(--sk-apple-blue);
     }
 
     .global-nav__brand {
@@ -789,9 +811,12 @@
 <body>
   <header class="global-nav" role="banner">
     <div class="global-nav__inner">
-      <div class="global-nav__cluster">
-        <a class="global-nav__brand" href="#" id="navHome">G PT I</a>
-        <span class="global-nav__meta">电竞人格测试</span>
+      <div class="global-nav__stack">
+        <div class="global-nav__cluster">
+          <a class="global-nav__brand" href="#" id="navHome">G PT I</a>
+          <span class="global-nav__meta">电竞人格测试</span>
+        </div>
+        <a class="global-nav__url" href="https://gpti.fsbang.top/" target="_blank" rel="noopener noreferrer">gpti.fsbang.top</a>
       </div>
     </div>
   </header>
@@ -838,7 +863,7 @@
 
     <section id="result" class="screen section--light" aria-label="测试结果">
       <div class="section__inner result-wrap">
-        <h2 class="section-heading" style="margin-bottom: 24px;">你的结果</h2>
+        <h2 id="resultHeading" class="section-heading" style="margin-bottom: 24px;">你的结果</h2>
         <div class="result-layout">
           <div class="result-top">
             <div class="poster-box surface-card" id="posterBox">
@@ -949,7 +974,7 @@
       {id:'netcafe_gate_q2',special:true,kind:'netcafe_trigger',text:'你和网吧的关系是？',options:[{label:'偶尔和朋友去，享受氛围',value:1},{label:'网吧就是我家。我有固定座位，老板知道我的口味，我在那通宵打出过人生巅峰段位，键盘上的包浆是我的勋章',value:2}]}
     ];
 
-    const PLAYER_GAMES = {"ZmjjKK":"VAL","nobody":"VAL","CHICHOO":"VAL","Aspas":"VAL","TenZ":"VAL","s1mon":"VAL","Smoggy":"VAL","s1mple":"CS","ZywOo":"CS","NiKo":"CS","karrigan":"CS","device":"CS","donk":"CS","m0NESY":"CS","sh1ro":"CS","zontix":"CS","Faker":"LOL","Uzi":"LOL","TheShy":"LOL","Meiko":"LOL","knight":"LOL","JackeyLove":"LOL","Chovy":"LOL","Bin":"LOL","Xun":"LOL","ON":"LOL","Viper":"LOL","NETBAR":"ALL","RANDOM":"ALL"};
+    const PLAYER_GAMES = {"ZmjjKK":"VAL","nobody":"VAL","CHICHOO":"VAL","Aspas":"VAL","TenZ":"VAL","s1mon":"VAL","Smoggy":"VAL","cxy0714":"VAL","Ethan":"VAL","s1mple":"CS","ZywOo":"CS","NiKo":"CS","karrigan":"CS","device":"CS","donk":"CS","m0NESY":"CS","sh1ro":"CS","zontix":"CS","Faker":"LOL","Uzi":"LOL","TheShy":"LOL","Meiko":"LOL","knight":"LOL","JackeyLove":"LOL","Chovy":"LOL","Bin":"LOL","Xun":"LOL","ON":"LOL","Viper":"LOL","NETBAR":"ALL","RANDOM":"ALL"};
 
     const TYPE_LIBRARY = {
       "ZmjjKK":{"code":"ZmjjKK","cn":"操作天花板","intro":"准心即正义，枪法即真理。","desc":"恭喜你，你测出了无畏契约宇宙中最稀有的人格——ZmjjKK型。你的游戏风格就像一台自带物理外挂的精密仪器：操作炸裂到让对手怀疑人生，脑子清醒到让队友觉得你不是在打游戏，而是在下棋——只不过你的棋子是一发又一发精准的爆头。你相信自己的手，更相信自己的判断。在你的世界里，没有“打不过”三个字，只有“我还没发力”。当你走进一局游戏，你不是在参与比赛，你是在给对面五个人上一堂“什么叫降维打击”的公开课。"},
@@ -959,6 +984,8 @@
       "TenZ":{"code":"TenZ","cn":"天赋明星","intro":"我的天赋，是一种不可控的美。","desc":"TenZ型人格是电竞世界里的超新星——当你状态在线的时候，你就是服务器里最耀眼的存在。但你也有个致命的特点：你的状态比天气预报还难预测。巅峰时你能单局40杀让对面五个人集体破防，低谷时你又能打出让自己都尴尬的whiff集锦。你靠的不是日复一日的枯燥训练，而是一种天生的游戏直觉。你就是电竞版的“天才在左，疯子在右”。"},
       "s1mon":{"code":"s1mon","cn":"幕后操控者","intro":"道具到位，你们只管杀。","desc":"s1mon型人格是团队里最容易被忽视却最不可或缺的存在——你是那个让队友变成超人的幕后推手。你的闪光弹永远精准到让对面白屏的那一秒队友刚好peek出去，你的烟雾永远切在最关键的视野线上。你不追求个人击杀数，你追求的是每一颗道具都物尽其用。你是战术体系的基石，没有你的配合，再强的决斗者也只是在单打独斗。你的游戏理解极深——你不仅知道自己该站哪，还知道队友需要你站哪。你是那种赛后队友会专门说一句'今天道具给得太舒服了'的人。你的价值不在计分板上，在每一次完美配合的化学反应里。"},
       "Smoggy":{"code":"Smoggy","cn":"灵活百搭","intro":"你们缺什么，我就是什么。","desc":"Smoggy型人格是团队里最被低估的存在——直到你不在的那天，所有人才会发现队伍突然散了架。你是人形万金油，什么角色都能拿出来打。你不追求个人数据，不抢高光时刻，你追求的是让每个队友都能在最舒服的状态下输出。你的稳定性是队伍的压舱石。低调、靠谱、不可或缺——这就是你。"},
+      "cxy0714":{"code":"cxy0714","cn":"路人王表哥","intro":"kskbl，zdjd？","desc":"cxy型人格是从职业赛场杀到直播间、又从直播间杀回天梯巅峰的狠人。你是正儿八经的路人王——国服第一、亚服第一，排位天梯就是你的统治领域。你当过职业选手，火男、蕾娜、斯凯随手就来，自称全能王，而且你还真有这个资本。转型主播之后你不仅没有变菜，反而在直播中冲击天梯榜首的过程收获了一大波粉丝。你最大的天赋不只是操作——你还有与生俱来的节目效果：一本正经地念神评弹幕，配上那口标志性的广西口音，每次都能让直播间笑成一片。你和ZmjjKK之间的恩怨情仇更是让整个无畏契约圈子炸了锅——一个是EDG世界冠军FMVP，一个是天梯路人王转型主播，两人的粉丝互相串门对线，弹幕大战堪比世界赛决赛。"},
+      "Ethan":{"code":"Ethan","cn":"是Ethan不是伊森","intro":"开没开，我一眼就能看出来。","desc":"Ethan型人格是无畏契约圈子里的正义使者——你不仅自己打游戏，你还在替所有绿玩守护公平竞技的底线。你是瓦罗兰特鉴挂界的标杆人物，每天下午准时开播，一帧一帧地拆解可疑操作，把那些自以为藏得很深的外挂玩家扒得干干净净。你创建的封神榜（fsbang.top）是全瓦首个公益鉴挂网站，一个属于绿玩的赛博法庭——外挂玩家闻风丧胆，正常玩家拍手叫好。你的鉴挂视频素材之暴力、分析之精准，经常让弹幕集体刷屏'太明显了'。500个赋能局能封450个挂，这战绩比打职业还恐怖。你用行动证明了一件事：保护游戏环境的人，和打出精彩操作的人一样值得尊敬。你是无畏契约的守夜人。"},
       "s1mple":{"code":"s1mple","cn":"绝对统治","intro":"我不需要队友，但队友需要我。","desc":"恭喜你，你测出了FPS游戏史上最具统治力的人格——s1mple型。你对自己的操作有着近乎偏执的自信，而更可怕的是，你的自信是有道理的。你对游戏的理解深入骨髓——你不仅知道怎么打，还知道为什么要这么打。当比赛进入关键时刻，所有人都会不自觉地把希望寄托在你身上——因为他们知道，在1v3的残局里，你比满编的对手更可怕。"},
       "ZywOo":{"code":"ZywOo","cn":"沉默统治者","intro":"不需要说话，数据会替我发声。","desc":"ZywOo型人格是电竞世界里最安静的核武器。你不喊不叫，不秀不浪，你只是默默地在每一局比赛里交出最恐怖的数据。你是那种赛后看数据面板才会被注意到的选手型人格——“等等，这个人怎么又是全场最高？”你像一台精密的瑞士手表，无论外部环境如何变化，你的输出永远恒定。"},
       "NiKo":{"code":"NiKo","cn":"极致操作","intro":"完美主义不是病，是天赋。","desc":"NiKo型人格的双手被上帝亲吻过——你的操作精准到像是开了辅助线，你的爆头率高到让反作弊系统都忍不住多看你两眼。你追求的不仅是赢，而是完美地赢。你是典型的完美主义者——这让你的上限高到离谱，但也让你在事情不顺利的时候容易上头。你渴望掌控比赛，渴望成为决定胜负的那个人。"},
@@ -985,7 +1012,7 @@
 
     const TYPE_IMAGES = {
       "ZmjjKK":"./image/zmjjkk.png","nobody":"./image/nobody.png","CHICHOO":"./image/chicho.png",
-      "Aspas":"./image/aspas.png","TenZ":"./image/tenz.png","s1mon":"./image/simon.png","Smoggy":"./image/Smoggy.png",
+      "Aspas":"./image/aspas.png","TenZ":"./image/tenz.png","s1mon":"./image/simon.png","Smoggy":"./image/Smoggy.png","cxy0714":"./image/cxy.png","Ethan":"./image/Ethan.png",
       "s1mple":"./image/s1mple.png","ZywOo":"./image/ZywOo.png","NiKo":"./image/niko.png",
       "karrigan":"./image/karrigan.png","device":"./image/device.png","donk":"./image/donk.png",
       "m0NESY":"./image/m0NESY.png","sh1ro":"./image/sh1ro.png","zontix":"./image/zontix.png",
@@ -1004,6 +1031,8 @@
       {"code":"TenZ","pattern":"HHL-MLH-MMM-MHL-MHH"},
       {"code":"s1mon","pattern":"MLH-HHM-MHH-HMH-MHM"},
       {"code":"Smoggy","pattern":"MMH-HMH-MHH-HMH-HMM"},
+      {"code":"cxy0714","pattern":"HHL-MMH-MHM-HHM-HHH"},
+      {"code":"Ethan","pattern":"HHM-MHH-HMM-HHM-HHH"},
       {"code":"s1mple","pattern":"HHM-HHH-LMM-HHH-MHH"},
       {"code":"ZywOo","pattern":"HMH-HHH-MMH-HHH-LMM"},
       {"code":"NiKo","pattern":"HHM-HMH-MML-HHM-MHH"},
@@ -1051,7 +1080,8 @@
     const app = {
       shuffledQuestions: [],
       answers: {},
-      previewMode: false
+      previewMode: false,
+      galleryPreview: false
     };
 
     const screens = {
@@ -1178,6 +1208,53 @@
       return pattern.replace(/-/g, '').split('');
     }
 
+    function dimQuestionCount(dim) {
+      return questions.filter(q => q.dim === dim).length;
+    }
+
+    function scoreForLevel(levelChar, qCount) {
+      if (qCount === 1) {
+        return levelChar === 'L' ? 1 : levelChar === 'M' ? 2 : 3;
+      }
+      return levelChar === 'L' ? 3 : levelChar === 'M' ? 4 : 6;
+    }
+
+    function buildPreviewResult(code) {
+      const raw = String(code || '').trim();
+      if (!raw) return null;
+      const key =
+        Object.keys(TYPE_LIBRARY).find(k => k.toLowerCase() === raw.toLowerCase()) || raw;
+      const type = TYPE_LIBRARY[key];
+      if (!type) return null;
+      const normal = NORMAL_TYPES.find(t => t.code === key);
+      const levels = {};
+      const rawScores = {};
+      if (normal) {
+        const chars = parsePattern(normal.pattern);
+        dimensionOrder.forEach((dim, i) => {
+          levels[dim] = chars[i];
+          rawScores[dim] = scoreForLevel(chars[i], dimQuestionCount(dim));
+        });
+      } else {
+        dimensionOrder.forEach(dim => {
+          levels[dim] = 'M';
+          rawScores[dim] = scoreForLevel('M', dimQuestionCount(dim));
+        });
+      }
+      return {
+        rawScores,
+        levels,
+        ranked: [],
+        bestNormal: null,
+        finalType: type,
+        modeKicker: '选手图鉴',
+        badge: '图鉴预览 · 资料库参考画像',
+        sub: '此为该选手在题库中的参考画像与理论维度分布，并非你本人答题生成的结果。想测自己请返回首页开始测试。',
+        special: key === 'NETBAR' || key === 'RANDOM',
+        secondaryType: null
+      };
+    }
+
     function getNetcafeTriggered() {
       return app.answers[NETBAR_TRIGGER_QUESTION_ID] === 2;
     }
@@ -1274,8 +1351,17 @@
     }
 
     function renderResult() {
+      app.galleryPreview = false;
       const result = computeResult();
+      applyResultToUI(result);
+    }
+
+    function applyResultToUI(result) {
       const type = result.finalType;
+      const headingEl = document.getElementById('resultHeading');
+      if (headingEl) {
+        headingEl.textContent = app.galleryPreview ? '选手画像' : '你的结果';
+      }
 
       const gameTag = PLAYER_GAMES[type.code] || '';
       const tagHTML = gameTag
@@ -1288,9 +1374,11 @@
       document.getElementById('resultTypeSub').textContent = result.sub;
       document.getElementById('resultDesc').textContent = type.desc;
       document.getElementById('posterCaption').textContent = type.intro;
-      document.getElementById('funNote').textContent = result.special
-        ? '本测试仅供娱乐。隐藏选手和路人王兜底都属于彩蛋机制，请勿当真。'
-        : '本测试仅供娱乐，结果只代表游戏风格倾向，不代表真实水平。你可以笑，但别太当真。';
+      document.getElementById('funNote').textContent = app.galleryPreview
+        ? '图鉴预览：十五维度为该选手在资料库中的理论分布，未经你本人答题。娱乐向内容，请勿过度当真。'
+        : result.special
+          ? '本测试仅供娱乐。隐藏选手和路人王兜底都属于彩蛋机制，请勿当真。'
+          : '本测试仅供娱乐，结果只代表游戏风格倾向，不代表真实水平。你可以笑，但别太当真。';
 
       const posterBox = document.getElementById('posterBox');
       const posterImage = document.getElementById('posterImage');
@@ -1311,6 +1399,7 @@
 
     function startTest(preview = false) {
       app.previewMode = preview;
+      app.galleryPreview = false;
       app.answers = {};
       const shuffledRegular = shuffle(questions);
       const insertIndex = Math.floor(Math.random() * shuffledRegular.length) + 1;
@@ -1325,6 +1414,9 @@
 
     function goIntro(e) {
       if (e) e.preventDefault();
+      app.galleryPreview = false;
+      const headingEl = document.getElementById('resultHeading');
+      if (headingEl) headingEl.textContent = '你的结果';
       showScreen('intro');
     }
 
@@ -1334,7 +1426,7 @@
     document.getElementById('restartBtn').addEventListener('click', () => startTest(false));
     document.getElementById('toTopBtn').addEventListener('click', goIntro);
     document.getElementById('navHome').addEventListener('click', goIntro);
-    document.getElementById('learnMoreLink').addEventListener('click', (e) => {
+    document.getElementById('learnMoreLink')?.addEventListener('click', (e) => {
       e.preventDefault();
       if (screens.intro.classList.contains('active')) {
         document.getElementById('introFootnotes').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1350,6 +1442,16 @@
       }
       document.getElementById('testHint')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
+
+    (function initPlayerFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const raw = params.get('player') || params.get('p');
+      if (!raw) return;
+      const preview = buildPreviewResult(raw);
+      if (!preview) return;
+      app.galleryPreview = true;
+      applyResultToUI(preview);
+    })();
   </script>
 </body>
 </html>

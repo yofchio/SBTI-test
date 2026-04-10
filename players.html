@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>选手图鉴 — GPTI 电竞人格测试</title>
+  <style>
+    :root {
+      --sk-light-gray: #f5f5f7;
+      --sk-ink: #2c2c2e;
+      --sk-apple-blue: #0071e3;
+      --sk-link-light: #0066cc;
+      --sk-text-secondary-light: rgba(0, 0, 0, 0.72);
+      --sk-text-tertiary-light: rgba(0, 0, 0, 0.48);
+      --sk-border-hairline: rgba(0, 0, 0, 0.08);
+      --sk-nav-glass: rgba(245, 245, 247, 0.82);
+      --sk-card-shadow: rgba(0, 0, 0, 0.12) 2px 4px 24px 0px;
+      --content-max: 1100px;
+      --nav-height: 52px;
+      --radius-card: 12px;
+      --radius-pill: 980px;
+      --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      --font-text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font-text);
+      font-size: 17px;
+      line-height: 1.47;
+      color: var(--sk-ink);
+      background: var(--sk-light-gray);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      min-height: var(--nav-height);
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      background: var(--sk-nav-glass);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--sk-border-hairline);
+    }
+    .global-nav__inner {
+      width: 100%;
+      max-width: var(--content-max);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .global-nav__stack {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .global-nav__brand {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--sk-ink);
+      text-decoration: none;
+    }
+    .global-nav__brand:hover { color: var(--sk-apple-blue); }
+    .global-nav__url {
+      font-size: 12px;
+      color: var(--sk-link-light);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .global-nav__url:hover {
+      text-decoration: underline;
+      color: var(--sk-apple-blue);
+    }
+    .global-nav__links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 15px;
+    }
+    .global-nav__links a {
+      color: var(--sk-link-light);
+      text-decoration: none;
+    }
+    .global-nav__links a:hover { text-decoration: underline; }
+
+    .wrap {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: 40px 22px 80px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 600;
+      margin: 0 0 8px;
+    }
+    .hero-sub {
+      margin: 0 0 28px;
+      color: var(--sk-text-secondary-light);
+      max-width: 40rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .filter-btn {
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--sk-border-hairline);
+      background: #fff;
+      color: var(--sk-ink);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .filter-btn:hover {
+      background: #f0f0f5;
+    }
+    .filter-btn[aria-pressed="true"] {
+      background: var(--sk-ink);
+      color: #fff;
+      border-color: var(--sk-ink);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: var(--radius-card);
+      box-shadow: var(--sk-card-shadow);
+      border: 1px solid var(--sk-border-hairline);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: rgba(0, 0, 0, 0.16) 4px 12px 32px 0px;
+    }
+    .card:focus-visible {
+      outline: 2px solid var(--sk-apple-blue);
+      outline-offset: 2px;
+    }
+    .card__img-wrap {
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(180deg, #fafafc 0%, #ebebed 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card__body {
+      padding: 16px 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card__game {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sk-text-tertiary-light);
+    }
+    .card__code {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .card__cn {
+      font-size: 15px;
+      color: var(--sk-text-secondary-light);
+      margin: 0;
+    }
+    .card__cta {
+      margin-top: auto;
+      padding-top: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sk-link-light);
+    }
+
+    .empty-hint {
+      display: none;
+      text-align: center;
+      padding: 48px 16px;
+      color: var(--sk-text-tertiary-light);
+    }
+    .empty-hint.visible { display: block; }
+
+    .caption-foot {
+      margin-top: 48px;
+      font-size: 13px;
+      color: var(--sk-text-tertiary-light);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="global-nav" role="banner">
+    <div class="global-nav__inner">
+      <div class="global-nav__stack">
+        <a class="global-nav__brand" href="index.html">G PT I</a>
+        <a class="global-nav__url" href="https://gpti.fsbang.top/" target="_blank" rel="noopener noreferrer">gpti.fsbang.top</a>
+      </div>
+      <div class="global-nav__links">
+        <a href="index.html">开始测试</a>
+        <a href="index.html#introFootnotes">关于</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="hero-title">选手图鉴</h1>
+    <p class="hero-sub">
+      点击下方卡片可打开对应选手的完整结果页（画像、解读与十五维度参考分布）。链接带参数 <code style="font-size:14px;background:#ebebed;padding:2px 6px;border-radius:4px;">?player=代码</code>，也可收藏或分享。
+    </p>
+
+    <div class="filters" role="tablist" aria-label="按项目筛选">
+      <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">全部</button>
+      <button type="button" class="filter-btn" data-filter="VAL" aria-pressed="false">无畏契约</button>
+      <button type="button" class="filter-btn" data-filter="CS" aria-pressed="false">CS2</button>
+      <button type="button" class="filter-btn" data-filter="LOL" aria-pressed="false">英雄联盟</button>
+      <button type="button" class="filter-btn" data-filter="SPECIAL" aria-pressed="false">特殊</button>
+    </div>
+
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <p id="emptyHint" class="empty-hint">没有符合筛选的选手。</p>
+
+    <p class="caption-foot">共 29 位画像（27 位职业选手 + 网吧战神 + 随机路人王）。内容仅供娱乐。</p>
+  </main>
+
+  <script>
+    const IMAGES = {
+      ZmjjKK: './image/zmjjkk.png', nobody: './image/nobody.png', CHICHOO: './image/chicho.png',
+      Aspas: './image/aspas.png', TenZ: './image/tenz.png', s1mon: './image/simon.png', Smoggy: './image/Smoggy.png',
+      cxy0714: './image/cxy.png', Ethan: './image/Ethan.png',
+      s1mple: './image/s1mple.png', ZywOo: './image/ZywOo.png', NiKo: './image/niko.png',
+      karrigan: './image/karrigan.png', device: './image/device.png', donk: './image/donk.png',
+      m0NESY: './image/m0NESY.png', sh1ro: './image/sh1ro.png', zontix: './image/zontix.png',
+      Faker: './image/Faker.png', Uzi: './image/Uzi.png', TheShy: './image/TheShy.png',
+      Meiko: './image/Meiko.png', knight: './image/knight.png', JackeyLove: './image/JackeyLove.png',
+      Chovy: './image/Chovy.png', Bin: './image/bin.png', Xun: './image/Xun.png',
+      ON: './image/ON.png', Viper: './image/Viper.png',
+      NETBAR: './image/NETBAR.png', RANDOM: './image/RANDOM.png'
+    };
+
+    const CAT_LABEL = {
+      VAL: '无畏契约',
+      CS: 'CS2',
+      LOL: '英雄联盟',
+      SPECIAL: '特殊'
+    };
+
+    const PLAYERS = [
+      { code: 'ZmjjKK', cn: '操作天花板', cat: 'VAL' },
+      { code: 'nobody', cn: '战术大脑', cat: 'VAL' },
+      { code: 'CHICHOO', cn: '华丽先锋', cat: 'VAL' },
+      { code: 'Aspas', cn: '决斗之王', cat: 'VAL' },
+      { code: 'TenZ', cn: '天赋明星', cat: 'VAL' },
+      { code: 's1mon', cn: '幕后操控者', cat: 'VAL' },
+      { code: 'Smoggy', cn: '灵活百搭', cat: 'VAL' },
+      { code: 'cxy0714', cn: '路人王表哥', cat: 'VAL' },
+      { code: 'Ethan', cn: '是Ethan不是伊森', cat: 'VAL' },
+      { code: 's1mple', cn: '绝对统治', cat: 'CS' },
+      { code: 'ZywOo', cn: '沉默统治者', cat: 'CS' },
+      { code: 'NiKo', cn: '极致操作', cat: 'CS' },
+      { code: 'karrigan', cn: '脑力之王', cat: 'CS' },
+      { code: 'device', cn: '稳定之王', cat: 'CS' },
+      { code: 'donk', cn: '天降奇才', cat: 'CS' },
+      { code: 'm0NESY', cn: '新世代天才', cat: 'CS' },
+      { code: 'sh1ro', cn: '冷血狙击', cat: 'CS' },
+      { code: 'zontix', cn: '暴力输出', cat: 'CS' },
+      { code: 'Faker', cn: '不灭大魔王', cat: 'LOL' },
+      { code: 'Uzi', cn: '永不言败', cat: 'LOL' },
+      { code: 'TheShy', cn: '莽夫之王', cat: 'LOL' },
+      { code: 'Meiko', cn: '辅助之神', cat: 'LOL' },
+      { code: 'knight', cn: '稳健核心', cat: 'LOL' },
+      { code: 'JackeyLove', cn: '天才莽夫', cat: 'LOL' },
+      { code: 'Chovy', cn: '线霸帝王', cat: 'LOL' },
+      { code: 'Bin', cn: '莽王上单', cat: 'LOL' },
+      { code: 'Xun', cn: '节奏大师', cat: 'LOL' },
+      { code: 'ON', cn: '冲锋辅助', cat: 'LOL' },
+      { code: 'Viper', cn: '冠军体质', cat: 'LOL' },
+      { code: 'NETBAR', cn: '网吧战神', cat: 'SPECIAL' },
+      { code: 'RANDOM', cn: '随机路人王', cat: 'SPECIAL' }
+    ];
+
+    const grid = document.getElementById('grid');
+    const emptyHint = document.getElementById('emptyHint');
+    let activeFilter = 'all';
+
+    function cardHtml(p) {
+      const src = IMAGES[p.code] || '';
+      const href = `index.html?player=${encodeURIComponent(p.code)}`;
+      const gameLabel = CAT_LABEL[p.cat] || p.cat;
+      return `
+        <a class="card" href="${href}">
+          <div class="card__img-wrap">
+            ${src ? `<img class="card__img" src="${src}" alt="${p.code}（${p.cn}）" loading="lazy" />` : ''}
+          </div>
+          <div class="card__body">
+            <span class="card__game">${gameLabel}</span>
+            <h2 class="card__code">${p.code}</h2>
+            <p class="card__cn">${p.cn}</p>
+            <span class="card__cta">查看结果页 →</span>
+          </div>
+        </a>
+      `;
+    }
+
+    function render() {
+      const list = activeFilter === 'all'
+        ? PLAYERS
+        : PLAYERS.filter(p => p.cat === activeFilter);
+      grid.innerHTML = list.map(cardHtml).join('');
+      emptyHint.classList.toggle('visible', list.length === 0);
+    }
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeFilter = btn.getAttribute('data-filter');
+        document.querySelectorAll('.filter-btn').forEach(b => {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
